@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
+import { MOCK_ENABLED, mockContributions } from '@/lib/mocks'
 
 const contributionSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
       where.type = type
     }
 
-    const contributions = await prisma.contribution.findMany({
+    const contributions = MOCK_ENABLED ? mockContributions : await prisma.contribution.findMany({
       where,
       include: {
         user: {
@@ -45,7 +46,7 @@ export async function GET(request: NextRequest) {
       take: limit
     })
 
-    const total = await prisma.contribution.count({ where })
+    const total = MOCK_ENABLED ? contributions.length : await prisma.contribution.count({ where })
 
     return NextResponse.json({
       contributions,
@@ -69,6 +70,11 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const validatedData = contributionSchema.parse(body)
+
+    if (MOCK_ENABLED) {
+      const created = { ...mockContributions[0], id: `c_${Date.now()}`, ...validatedData }
+      return NextResponse.json(created, { status: 201 })
+    }
 
     const contribution = await prisma.contribution.create({
       data: {

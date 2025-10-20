@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
+import { MOCK_ENABLED, mockArticles } from '@/lib/mocks'
 
 const articleSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -40,7 +41,7 @@ export async function GET(request: NextRequest) {
       where.featured = true
     }
 
-    const articles = await prisma.article.findMany({
+    const articles = MOCK_ENABLED ? mockArticles : await prisma.article.findMany({
       where,
       include: {
         category: true,
@@ -53,7 +54,7 @@ export async function GET(request: NextRequest) {
       take: limit
     })
 
-    const total = await prisma.article.count({ where })
+    const total = MOCK_ENABLED ? articles.length : await prisma.article.count({ where })
 
     return NextResponse.json({
       articles,
@@ -85,6 +86,11 @@ export async function POST(request: NextRequest) {
       .replace(/(^-|-$)/g, '')
 
     const { tags, ...rest } = validatedData
+
+    if (MOCK_ENABLED) {
+      const created = { ...mockArticles[0], id: `a_${Date.now()}`, ...rest, slug }
+      return NextResponse.json(created, { status: 201 })
+    }
 
     const article = await prisma.article.create({
       data: {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import type { Article, Person, Place, Event, Contribution, User } from '@prisma/client'
+import { MOCK_ENABLED, buildMockSearch } from '@/lib/mocks'
 
 export async function GET(request: NextRequest) {
   try {
@@ -23,6 +24,10 @@ export async function GET(request: NextRequest) {
       places?: Place[]
       events?: Event[]
       contributions?: ContributionWithUser[]
+    }
+
+    if (MOCK_ENABLED) {
+      return NextResponse.json(buildMockSearch(query))
     }
 
     const results: SearchResults = {}
