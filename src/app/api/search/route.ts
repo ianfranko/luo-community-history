@@ -37,9 +37,9 @@ export async function GET(request: NextRequest) {
       const articles = await prisma.article.findMany({
         where: {
           OR: [
-            { title: { contains: query, mode: 'insensitive' } },
-            { content: { contains: query, mode: 'insensitive' } },
-            { excerpt: { contains: query, mode: 'insensitive' } }
+            { title: { contains: query } },
+            { content: { contains: query } },
+            { excerpt: { contains: query } }
           ],
           published: true
         },
@@ -57,11 +57,11 @@ export async function GET(request: NextRequest) {
       const people = await prisma.person.findMany({
         where: {
           OR: [
-            { name: { contains: query, mode: 'insensitive' } },
-            { title: { contains: query, mode: 'insensitive' } },
-            { village: { contains: query, mode: 'insensitive' } },
-            { clan: { contains: query, mode: 'insensitive' } },
-            { biography: { contains: query, mode: 'insensitive' } }
+            { name: { contains: query } },
+            { title: { contains: query } },
+            { village: { contains: query } },
+            { clan: { contains: query } },
+            { biography: { contains: query } }
           ]
         },
         take: limit
@@ -74,9 +74,9 @@ export async function GET(request: NextRequest) {
       const places = await prisma.place.findMany({
         where: {
           OR: [
-            { name: { contains: query, mode: 'insensitive' } },
-            { description: { contains: query, mode: 'insensitive' } },
-            { county: { contains: query, mode: 'insensitive' } }
+            { name: { contains: query } },
+            { description: { contains: query } },
+            { county: { contains: query } }
           ]
         },
         take: limit
@@ -89,9 +89,9 @@ export async function GET(request: NextRequest) {
       const events = await prisma.event.findMany({
         where: {
           OR: [
-            { title: { contains: query, mode: 'insensitive' } },
-            { description: { contains: query, mode: 'insensitive' } },
-            { location: { contains: query, mode: 'insensitive' } }
+            { title: { contains: query } },
+            { description: { contains: query } },
+            { location: { contains: query } }
           ]
         },
         take: limit
@@ -104,8 +104,8 @@ export async function GET(request: NextRequest) {
       const contributions = await prisma.contribution.findMany({
         where: {
           OR: [
-            { title: { contains: query, mode: 'insensitive' } },
-            { content: { contains: query, mode: 'insensitive' } }
+            { title: { contains: query } },
+            { content: { contains: query } }
           ],
           status: 'approved'
         },
