@@ -83,11 +83,16 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '')
 
+    const { tags, ...rest } = validatedData
+
     const article = await prisma.article.create({
       data: {
-        ...validatedData,
+        ...rest,
         slug,
-        published: validatedData.published || false
+        published: validatedData.published || false,
+        ...(tags && tags.length
+          ? { tags: { connect: tags.map((id) => ({ id })) } }
+          : {})
       },
       include: {
         category: true,
