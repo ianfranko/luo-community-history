@@ -10,9 +10,7 @@
   node_bundler = "esbuild"
   external_node_modules = ["@prisma/client", "prisma"]
   included_files = ["/prisma/**", "/node_modules/.prisma/**"]
-  # Increase timeout/size to avoid handler upload timeouts
-  [functions.timeout]
-    duration = 26
+  # Note: Netlify Functions timeout is controlled by plan and cannot be configured here
 
 [build.environment]
   NODE_VERSION = "22"
