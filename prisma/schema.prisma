@@ -1,0 +1,154 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  contributions Contribution[]
+  
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  slug        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  articles Article[]
+  
+  @@map("categories")
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String
+  excerpt     String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  
+  tags       Tag[]
+  images     Image[]
+  sources    Source[]
+  
+  @@map("articles")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  
+  articles Article[]
+  
+  @@map("tags")
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  caption   String?
+  createdAt DateTime @default(now())
+  
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id])
+  
+  @@map("images")
+}
+
+model Source {
+  id        String   @id @default(cuid())
+  title     String
+  url       String?
+  author    String?
+  publisher String?
+  year      Int?
+  type      String   // book, article, website, oral_history, etc.
+  createdAt DateTime @default(now())
+  
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id])
+  
+  @@map("sources")
+}
+
+model Contribution {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  type        String   // story, photo, document, correction, etc.
+  status      String   @default("pending") // pending, approved, rejected
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  
+  @@map("contributions")
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        DateTime
+  location    String?
+  type        String   // cultural, historical, celebration, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("events")
+}
+
+model Person {
+  id          String   @id @default(cuid())
+  name        String
+  title       String?  // Chief, Elder, etc.
+  biography   String?
+  birthYear   Int?
+  deathYear   Int?
+  village     String?
+  clan        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("people")
+}
+
+model Place {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  type        String   // village, town, landmark, etc.
+  coordinates String?  // lat,lng
+  county      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("places")
+}
