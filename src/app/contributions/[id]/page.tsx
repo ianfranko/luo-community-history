@@ -138,7 +138,7 @@ export default function ContributionDetailPage() {
           Contribution Not Found
         </h2>
         <p style={{ color: 'var(--text-light)', marginBottom: '2rem' }}>
-          The contribution you're looking for doesn't exist or has been removed.
+          The contribution you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
         <Link href="/contributions" className="btn btn-primary">
           <ArrowLeft size={20} />

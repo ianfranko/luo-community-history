@@ -118,7 +118,7 @@ export default function ContributePage() {
                   <h3 className="card-title">Need Help?</h3>
                   <p className="card-text">
                     If you have questions about contributing or need assistance with your submission, 
-                    please don't hesitate to reach out to us.
+                    please don&apos;t hesitate to reach out to us.
                   </p>
                   <button className="btn btn-outline" style={{ marginTop: '1rem' }}>
                     Contact Support

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Heart, BookOpen, Users, Calendar, MapPin, ArrowRight, History, Globe } from 'lucide-react'
+import { Heart, BookOpen, Users, Calendar, ArrowRight, History, Globe } from 'lucide-react'
 
 export default function CulturePage() {
   const culturalTopics = [

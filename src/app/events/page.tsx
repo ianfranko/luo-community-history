@@ -289,7 +289,7 @@ export default function EventsPage() {
                 <div className="card-body">
                   <h3 className="card-title">Event Calendar</h3>
                   <p className="card-text">
-                    View all upcoming events in a calendar format to see what's happening 
+                    View all upcoming events in a calendar format to see what&apos;s happening 
                     in the Luo community.
                   </p>
                   <Link href="/events/calendar" className="btn btn-outline" style={{ marginTop: '1rem' }}>

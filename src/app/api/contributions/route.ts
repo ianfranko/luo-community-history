@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
 
 const contributionSchema = z.object({
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status')
     const type = searchParams.get('type')
 
-    const where: any = {}
+    const where: Prisma.ContributionWhereInput = {}
     
     if (status) {
       where.status = status

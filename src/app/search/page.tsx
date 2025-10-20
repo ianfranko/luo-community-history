@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Search, BookOpen, Users, MapPin, Calendar, FileText, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -35,9 +35,9 @@ export default function SearchPage() {
       setQuery(searchQuery)
       search(searchQuery)
     }
-  }, [])
+  }, [search])
 
-  const search = async (searchQuery: string) => {
+  const search = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults(null)
       return
@@ -62,7 +62,7 @@ export default function SearchPage() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [searchType])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Heart, BookOpen, Camera, FileText, Users, History, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 
@@ -23,11 +23,7 @@ export default function ContributionsPage() {
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all')
   const [typeFilter, setTypeFilter] = useState<string>('')
 
-  useEffect(() => {
-    fetchContributions()
-  }, [filter, typeFilter])
-
-  const fetchContributions = async () => {
+  const fetchContributions = useCallback(async () => {
     setIsLoading(true)
     try {
       const params = new URLSearchParams()
@@ -46,7 +42,13 @@ export default function ContributionsPage() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [filter, typeFilter])
+
+  useEffect(() => {
+    fetchContributions()
+  }, [fetchContributions])
+
+  
 
   const getTypeIcon = (type: string) => {
     switch (type) {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Search, BookOpen, Users, MapPin, Calendar, Heart, ArrowRight, History, Globe, Shield } from 'lucide-react'
+import { Search, Users, MapPin, Calendar, Heart, ArrowRight, History, Globe } from 'lucide-react'
 
 export default function Home() {
   const features = [

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
 
 const articleSchema = z.object({
@@ -21,7 +22,7 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search')
     const featured = searchParams.get('featured')
 
-    const where: any = {}
+    const where: Prisma.ArticleWhereInput = {}
     
     if (category) {
       where.categoryId = category
