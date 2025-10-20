@@ -215,21 +215,13 @@ export default function CulturePage() {
       <section className="section bg-gradient" style={{ color: 'white' }}>
         <div className="container text-center">
           <h2 className="section-title" style={{ color: 'white' }}>
-            Share Your Cultural Knowledge
+            Explore Cultural Knowledge
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Do you have stories, traditions, or cultural knowledge to share? Help us preserve Luo culture for future generations.
+            Dive into articles and resources that preserve Luo culture for future generations.
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/contribute" className="btn" style={{ 
-              backgroundColor: 'white', 
-              color: 'var(--primary-color)',
-              border: '2px solid white'
-            }}>
-              <Heart size={20} />
-              Share Your Story
-            </Link>
             <Link href="/culture/traditions" className="btn btn-outline" style={{ 
               borderColor: 'white', 
               color: 'white' 

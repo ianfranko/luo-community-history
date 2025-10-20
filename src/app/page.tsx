@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Search, Users, MapPin, Calendar, Heart, ArrowRight, History, Globe } from 'lucide-react'
+import { Users, MapPin, Calendar, Heart, ArrowRight, History, Globe } from 'lucide-react'
 
 export default function Home() {
   const features = [
@@ -56,30 +56,7 @@ export default function Home() {
               Join us in preserving and sharing our stories for future generations.
             </p>
             
-            {/* Search Bar */}
-            <div className="search-container mb-8">
-              <Link href="/search" style={{ display: 'block', textDecoration: 'none' }}>
-                <div style={{
-                  width: '100%',
-                  padding: '1rem 1.5rem',
-                  borderRadius: '2rem',
-                  border: 'none',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  transition: 'all 0.2s ease',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
-                  <span style={{ color: 'var(--text-light)' }}>
-                    Search history, culture, people, places...
-                  </span>
-                  <Search size={20} color="var(--primary-color)" />
-                </div>
-              </Link>
-            </div>
+            
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -87,10 +64,7 @@ export default function Home() {
                 Explore Culture
                 <ArrowRight size={20} />
               </Link>
-              <Link href="/contribute" className="btn btn-outline">
-                Share Your Story
-                <Heart size={20} />
-              </Link>
+              
             </div>
           </div>
         </div>
@@ -220,18 +194,10 @@ export default function Home() {
             Be Part of Our Story
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Help us preserve and share Luo community history by contributing your stories, photos, and knowledge
+            Learn more about Luo community history and explore our resources
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/contribute" className="btn" style={{ 
-              backgroundColor: 'white', 
-              color: 'var(--primary-color)',
-              border: '2px solid white'
-            }}>
-              <Heart size={20} />
-              Contribute Now
-            </Link>
             <Link href="/about" className="btn btn-outline" style={{ 
               borderColor: 'white', 
               color: 'white' 

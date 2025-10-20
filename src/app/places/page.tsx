@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MapPin, Home, Mountain, TreePine, ArrowRight, Search, Calendar } from 'lucide-react'
+import { MapPin, Home, Mountain, TreePine, ArrowRight, Calendar } from 'lucide-react'
 
 export default function PlacesPage() {
   const placeTypes = [
@@ -218,7 +218,7 @@ export default function PlacesPage() {
         </div>
       </section>
 
-      {/* Recent Additions & Search */}
+      {/* Recent Additions */}
       <section className="section">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -284,39 +284,11 @@ export default function PlacesPage() {
                     Know of a significant place in Luo history? Share its story and help us preserve 
                     its importance for future generations.
                   </p>
-                  <Link href="/contribute" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-                    <MapPin size={20} />
-                    Share Location
-                  </Link>
+                  
                 </div>
               </div>
               
-              <div className="card" style={{ marginTop: '1.5rem' }}>
-                <div className="card-body">
-                  <h3 className="card-title">Search Places</h3>
-                  <p className="card-text">
-                    Looking for a specific place? Search by name, county, or type.
-                  </p>
-                  <div style={{ marginTop: '1rem' }}>
-                    <input
-                      type="text"
-                      placeholder="Search places..."
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '0.5rem',
-                        fontSize: '1rem',
-                        marginBottom: '0.5rem'
-                      }}
-                    />
-                    <button className="btn btn-primary" style={{ width: '100%' }}>
-                      <Search size={16} />
-                      Search
-                    </button>
-                  </div>
-                </div>
-              </div>
+              
 
               <div className="card" style={{ marginTop: '1.5rem' }}>
                 <div className="card-body">

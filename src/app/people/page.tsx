@@ -270,45 +270,9 @@ export default function PeoplePage() {
             </div>
             
             <div>
-              <div className="card">
-                <div className="card-body">
-                  <h3 className="card-title">Add Someone</h3>
-                  <p className="card-text">
-                    Do you know someone who should be featured in our community archive? 
-                    Share their story and help us preserve their legacy.
-                  </p>
-                  <Link href="/contribute" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-                    <Heart size={20} />
-                    Share Their Story
-                  </Link>
-                </div>
-              </div>
               
-              <div className="card" style={{ marginTop: '1.5rem' }}>
-                <div className="card-body">
-                  <h3 className="card-title">Search People</h3>
-                  <p className="card-text">
-                    Looking for a specific person? Use our search feature to find them quickly.
-                  </p>
-                  <div style={{ marginTop: '1rem' }}>
-                    <input
-                      type="text"
-                      placeholder="Search by name, village, or clan..."
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '0.5rem',
-                        fontSize: '1rem',
-                        marginBottom: '0.5rem'
-                      }}
-                    />
-                    <button className="btn btn-primary" style={{ width: '100%' }}>
-                      Search
-                    </button>
-                  </div>
-                </div>
-              </div>
+              
+              
             </div>
           </div>
         </div>
@@ -321,24 +285,15 @@ export default function PeoplePage() {
             Honor Our Community Heroes
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Every person has a story worth telling. Help us document the lives and contributions 
-            of Luo community members who have made a difference.
+            Explore the lives and legacies of Luo community members across generations.
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/contribute" className="btn" style={{ 
-              backgroundColor: 'white', 
-              color: 'var(--primary-color)',
-              border: '2px solid white'
-            }}>
-              <Users size={20} />
-              Add Someone
-            </Link>
-            <Link href="/people/search" className="btn btn-outline" style={{ 
+            <Link href="/people" className="btn btn-outline" style={{ 
               borderColor: 'white', 
               color: 'white' 
             }}>
-              Browse All People
+              Browse People
               <ArrowRight size={20} />
             </Link>
           </div>

@@ -271,19 +271,7 @@ export default function EventsPage() {
             </div>
             
             <div>
-              <div className="card">
-                <div className="card-body">
-                  <h3 className="card-title">Organize an Event</h3>
-                  <p className="card-text">
-                    Planning a cultural event or community gathering? Share it with the community 
-                    and help us build a comprehensive calendar of Luo events.
-                  </p>
-                  <Link href="/contribute" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-                    <Calendar size={20} />
-                    Add Event
-                  </Link>
-                </div>
-              </div>
+              
               
               <div className="card" style={{ marginTop: '1.5rem' }}>
                 <div className="card-body">
@@ -352,14 +340,6 @@ export default function EventsPage() {
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/contribute" className="btn" style={{ 
-              backgroundColor: 'white', 
-              color: 'var(--primary-color)',
-              border: '2px solid white'
-            }}>
-              <Calendar size={20} />
-              Add Your Event
-            </Link>
             <Link href="/events/calendar" className="btn btn-outline" style={{ 
               borderColor: 'white', 
               color: 'white' 

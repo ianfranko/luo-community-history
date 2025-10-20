@@ -2,12 +2,11 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Search, BookOpen, Users, MapPin, Calendar, Heart } from 'lucide-react'
-import SearchModal from './SearchModal'
+import { Menu, X, BookOpen, Users, MapPin, Calendar, Heart } from 'lucide-react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  
 
   const navigation = [
     { name: 'Home', href: '/', icon: BookOpen },
@@ -15,7 +14,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: 'People', href: '/people', icon: Users },
     { name: 'Places', href: '/places', icon: MapPin },
     { name: 'Events', href: '/events', icon: Calendar },
-    { name: 'Contribute', href: '/contribute', icon: BookOpen },
   ]
 
   return (
@@ -69,21 +67,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </nav>
 
-            {/* Search Button */}
-            <div style={{ display: 'none' }} className="md:flex">
-              <button 
-                onClick={() => setIsSearchOpen(true)}
-                style={{ 
-                  padding: '0.5rem', 
-                  color: 'var(--text-dark)', 
-                  border: 'none', 
-                  background: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                <Search size={20} />
-              </button>
-            </div>
+            
 
             {/* Mobile menu button */}
             <button
@@ -131,30 +115,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <span>{item.name}</span>
                 </Link>
               ))}
-              <div style={{ padding: '0.75rem' }}>
-                <button 
-                  onClick={() => {
-                    setIsSearchOpen(true)
-                    setIsMenuOpen(false)
-                  }}
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    color: 'var(--text-dark)', 
-                    border: 'none', 
-                    background: 'none',
-                    cursor: 'pointer',
-                    width: '100%',
-                    padding: '0.75rem',
-                    borderRadius: '0.5rem',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <Search size={16} />
-                  <span>Search</span>
-                </button>
-              </div>
+              
             </div>
           </div>
         )}
@@ -202,7 +163,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="footer-section">
               <h3>Community</h3>
               <ul>
-                <li><Link href="/contribute">Contribute</Link></li>
                 <li><Link href="/about">About Us</Link></li>
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
@@ -215,8 +175,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
 
-      {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      
     </div>
   )
 }
