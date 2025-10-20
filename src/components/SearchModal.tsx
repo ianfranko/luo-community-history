@@ -1,15 +1,21 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Search, X, BookOpen, Users, MapPin, Calendar, FileText } from 'lucide-react'
+import { Search, X, BookOpen, Users, MapPin, Calendar } from 'lucide-react'
 import Link from 'next/link'
 
+type ArticleLite = { id: string; slug: string; title: string; excerpt?: string | null; content?: string | null }
+type PersonLite = { id: string; name: string; title?: string | null; village?: string | null; clan?: string | null }
+type PlaceLite = { id: string; name: string; type?: string | null; county?: string | null }
+type EventLite = { id: string; title: string; type?: string | null; location?: string | null; date: string | Date }
+type ContributionLite = { id: string; title: string; excerpt?: string | null; content?: string | null }
+
 interface SearchResult {
-  articles?: any[]
-  people?: any[]
-  places?: any[]
-  events?: any[]
-  contributions?: any[]
+  articles?: ArticleLite[]
+  people?: PersonLite[]
+  places?: PlaceLite[]
+  events?: EventLite[]
+  contributions?: ContributionLite[]
   totalResults: number
 }
 
@@ -22,7 +28,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [selectedTab, setSelectedTab] = useState<'all' | 'articles' | 'people' | 'places' | 'events'>('all')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -85,35 +90,21 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     return () => clearTimeout(timeoutId)
   }
 
-  const getResultIcon = (type: string) => {
+  const getResultUrl = (
+    item: ArticleLite | PersonLite | PlaceLite | EventLite | ContributionLite,
+    type: 'articles' | 'people' | 'places' | 'events' | 'contributions'
+  ) => {
     switch (type) {
       case 'articles':
-        return BookOpen
+        return `/culture/${(item as ArticleLite).slug}`
       case 'people':
-        return Users
+        return `/people/${(item as PersonLite).name.toLowerCase().replace(/\s+/g, '-')}`
       case 'places':
-        return MapPin
+        return `/places/${(item as PlaceLite).name.toLowerCase().replace(/\s+/g, '-')}`
       case 'events':
-        return Calendar
+        return `/events/${(item as EventLite).id}`
       case 'contributions':
-        return FileText
-      default:
-        return Search
-    }
-  }
-
-  const getResultUrl = (item: any, type: string) => {
-    switch (type) {
-      case 'articles':
-        return `/culture/${item.slug}`
-      case 'people':
-        return `/people/${item.name.toLowerCase().replace(/\s+/g, '-')}`
-      case 'places':
-        return `/places/${item.name.toLowerCase().replace(/\s+/g, '-')}`
-      case 'events':
-        return `/events/${item.id}`
-      case 'contributions':
-        return `/contributions/${item.id}`
+        return `/contributions/${(item as ContributionLite).id}`
       default:
         return '#'
     }
@@ -205,7 +196,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {/* Results Summary */}
               <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--border-color)' }}>
                 <p style={{ color: 'var(--text-light)' }}>
-                  Found {results.totalResults} results for "{query}"
+                  Found {results.totalResults} results for &quot;{query}&quot;
                 </p>
               </div>
 
@@ -408,7 +399,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <div style={{ textAlign: 'center', padding: '2rem' }}>
                     <Search size={48} color="var(--text-light)" />
                     <p style={{ marginTop: '1rem', color: 'var(--text-light)' }}>
-                      No results found for "{query}"
+                      No results found for &quot;{query}&quot;
                     </p>
                     <p style={{ fontSize: '0.875rem', color: 'var(--text-light)' }}>
                       Try different keywords or check your spelling

@@ -1,15 +1,23 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, BookOpen, Users, MapPin, Calendar, FileText, ArrowRight, Filter } from 'lucide-react'
+import { Search, BookOpen, Users, MapPin, Calendar, FileText, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
+type SearchType = 'articles' | 'people' | 'places' | 'events' | 'contributions'
+
+type ArticleLite = { id: string; slug: string; title: string; excerpt?: string | null; content?: string | null }
+type PersonLite = { id: string; name: string; title?: string | null; village?: string | null; clan?: string | null }
+type PlaceLite = { id: string; name: string; type?: string | null; county?: string | null }
+type EventLite = { id: string; title: string; type?: string | null; location?: string | null; date: string | Date }
+type ContributionLite = { id: string; title: string; excerpt?: string | null; content?: string | null }
+
 interface SearchResult {
-  articles?: any[]
-  people?: any[]
-  places?: any[]
-  events?: any[]
-  contributions?: any[]
+  articles?: ArticleLite[]
+  people?: PersonLite[]
+  places?: PlaceLite[]
+  events?: EventLite[]
+  contributions?: ContributionLite[]
   totalResults: number
 }
 
@@ -17,8 +25,7 @@ export default function SearchPage() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [selectedTab, setSelectedTab] = useState<'all' | 'articles' | 'people' | 'places' | 'events' | 'contributions'>('all')
-  const [searchType, setSearchType] = useState<string>('')
+  const [searchType, setSearchType] = useState<SearchType | ''>('')
 
   useEffect(() => {
     // Get query from URL params
@@ -66,7 +73,7 @@ export default function SearchPage() {
     setQuery(e.target.value)
   }
 
-  const getResultIcon = (type: string) => {
+  const getResultIcon = (type: SearchType | '') => {
     switch (type) {
       case 'articles':
         return BookOpen
@@ -83,7 +90,10 @@ export default function SearchPage() {
     }
   }
 
-  const getResultUrl = (item: any, type: string) => {
+  const getResultUrl = (
+    item: ArticleLite | PersonLite | PlaceLite | EventLite | ContributionLite,
+    type: SearchType
+  ) => {
     switch (type) {
       case 'articles':
         return `/culture/${item.slug}`
@@ -100,7 +110,11 @@ export default function SearchPage() {
     }
   }
 
-  const renderResults = (items: any[], type: string, title: string) => {
+  const renderResults = (
+    items: Array<ArticleLite | PersonLite | PlaceLite | EventLite | ContributionLite> | undefined,
+    type: SearchType,
+    title: string
+  ) => {
     if (!items || items.length === 0) return null
 
     const Icon = getResultIcon(type)
@@ -321,8 +335,8 @@ export default function SearchPage() {
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.5rem' }}>
                   Search Results
                 </h2>
-                <p style={{ color: 'var(--text-light)' }}>
-                  Found {results.totalResults} results for "{query}"
+            <p style={{ color: 'var(--text-light)' }}>
+                  Found {results.totalResults} results for &quot;{query}&quot;
                 </p>
               </div>
 
@@ -341,7 +355,7 @@ export default function SearchPage() {
                       No results found
                     </h3>
                     <p style={{ color: 'var(--text-light)', marginBottom: '2rem' }}>
-                      No results found for "{query}". Try different keywords or check your spelling.
+                      No results found for &quot;{query}&quot;. Try different keywords or check your spelling.
                     </p>
                     <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                       <Link href="/culture" className="btn btn-primary">

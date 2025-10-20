@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import type { Article, Person, Place, Event, Contribution, User } from '@prisma/client'
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,7 +16,16 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const results: any = {}
+    type ContributionWithUser = Contribution & { user: Pick<User, 'id' | 'name'> }
+    type SearchResults = {
+      articles?: Article[]
+      people?: Person[]
+      places?: Place[]
+      events?: Event[]
+      contributions?: ContributionWithUser[]
+    }
+
+    const results: SearchResults = {}
 
     // Search articles
     if (!type || type === 'articles') {
@@ -107,11 +117,8 @@ export async function GET(request: NextRequest) {
       results.contributions = contributions
     }
 
-    return NextResponse.json({
-      query,
-      results,
-      totalResults: Object.values(results).reduce((sum: number, items: any) => sum + items.length, 0)
-    })
+    const totalResults = Object.values(results).reduce((sum, items) => sum + (items?.length ?? 0), 0)
+    return NextResponse.json({ query, results, totalResults })
   } catch (error) {
     console.error('Error searching:', error)
     return NextResponse.json(

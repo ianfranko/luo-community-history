@@ -143,7 +143,7 @@ export default function ContributionsPage() {
                   </label>
                   <select
                     value={filter}
-                    onChange={(e) => setFilter(e.target.value as any)}
+                    onChange={(e) => setFilter(e.target.value as 'all' | 'pending' | 'approved' | 'rejected')}
                     style={{
                       padding: '0.5rem',
                       border: '1px solid var(--border-color)',
