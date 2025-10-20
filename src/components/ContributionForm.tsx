@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Upload, Send, AlertCircle, CheckCircle } from 'lucide-react'
+import { Send, AlertCircle, CheckCircle } from 'lucide-react'
 
 const contributionSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200, 'Title must be less than 200 characters'),

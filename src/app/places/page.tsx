@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MapPin, Home, Mountain, TreePine, ArrowRight, Search, Calendar, Users } from 'lucide-react'
+import { MapPin, Home, Mountain, TreePine, ArrowRight, Search, Calendar } from 'lucide-react'
 
 export default function PlacesPage() {
   const placeTypes = [
