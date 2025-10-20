@@ -11,7 +11,8 @@
   external_node_modules = ["@prisma/client", "prisma"]
   included_files = ["/prisma/**", "/node_modules/.prisma/**"]
   # Increase timeout/size to avoid handler upload timeouts
-  timeout = 26
+  [functions.timeout]
+    duration = 26
 
 [build.environment]
   NODE_VERSION = "22"
