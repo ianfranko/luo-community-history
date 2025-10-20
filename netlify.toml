@@ -1,0 +1,23 @@
+## Netlify configuration for Next.js 15
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client", "prisma"]
+  included_files = ["/prisma/**", "/node_modules/.prisma/**"]
+  # Increase timeout/size to avoid handler upload timeouts
+  timeout = 26
+
+[build.environment]
+  NODE_VERSION = "22"
+  NETLIFY_USE_YARN = "false"
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Ensure Next outputs standalone server for smaller functions if needed
+  NEXT_PRIVATE_STANDALONE = "true"
+
+
