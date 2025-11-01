@@ -5,12 +5,12 @@ export default function Home() {
   const features = [
     {
       icon: History,
-      title: 'Rich History',
+      title: 'Documentary Films',
       description: 'Explore the fascinating history of the Luo community, from ancient traditions to modern developments.'
     },
     {
       icon: Heart,
-      title: 'Cultural Heritage',
+      title: 'Plays and Theatre',
       description: 'Discover the unique cultural practices, traditions, and values that define the Luo community.'
     },
     {
@@ -30,8 +30,8 @@ export default function Home() {
     },
     {
       icon: Globe,
-      title: 'Global Community',
-      description: 'Connect with Luo communities worldwide and share stories across generations.'
+      title: 'Interviews',
+      description: 'Listen to interviews with Luo leaders, elders, and community members.'
     }
   ]
 
@@ -52,7 +52,7 @@ export default function Home() {
               Preserving Luo Community Heritage
             </h1>
             <p className="text-xl mb-8" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-              Discover the rich cultural heritage, traditions, and history of the Luo community. 
+            Awakening the Luo community to its full cultural, intellectual, and economic potential — restoring pride, unity, and purpose among our people.
               Join us in preserving and sharing our stories for future generations.
             </p>
             
@@ -87,9 +87,9 @@ export default function Home() {
       {/* Features Section */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">Explore Our Heritage</h2>
+          <h2 className="section-title">View Gallery</h2>
           <p className="section-subtitle">
-            Dive deep into different aspects of Luo community history and culture
+            Photos, videos, and stories from our community events and activities
           </p>
           
           <div className="feature-grid">

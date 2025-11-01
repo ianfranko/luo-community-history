@@ -1,19 +1,23 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
-import { Menu, X, BookOpen, Users, MapPin, Calendar, Heart } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
 
   const navigation = [
-    { name: 'Home', href: '/', icon: BookOpen },
-    { name: 'Culture', href: '/culture', icon: Heart },
-    { name: 'People', href: '/people', icon: Users },
-    { name: 'Places', href: '/places', icon: MapPin },
-    { name: 'Events', href: '/events', icon: Calendar },
+    { name: 'Home', href: '/' },
+    { name: 'Events', href: '/events' },
+    { name: 'Gallery', href: '/Gallery' },
+    { name: 'Library', href: '/library' },
+    { name: 'About', href: '/about' },
+    { name: 'Drama', href: '/Drama' },
+    { name: 'Mentorship', href: '/mentorship' },
+    { name: 'Games', href: '/games' },
   ]
 
   return (
@@ -35,19 +39,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}>
             {/* Logo */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ 
-                width: '2rem', 
-                height: '2rem', 
-                background: 'var(--bg-gradient)', 
-                borderRadius: '50%', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center' 
-              }}>
-                <BookOpen size={20} color="white" />
-              </div>
+              <Image
+                src="/LLNLOGO.svg"
+                alt="Luo League of Nations Logo"
+                width={32}
+                height={32}
+                style={{ objectFit: 'contain' }}
+              />
               <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-dark)' }}>
-                Luo Community History
+                Luo League of Nations
               </span>
             </Link>
 
@@ -60,16 +60,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href={item.href}
                     className="nav-link"
                   >
-                    <item.icon size={16} />
                     <span>{item.name}</span>
                   </Link>
                 ))}
               </div>
             </nav>
 
-            
-
-            {/* Mobile menu button */}
+            {/* Hamburger menu button */}
             <button
               style={{ 
                 display: 'block', 
@@ -79,7 +76,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 background: 'none',
                 cursor: 'pointer'
               }}
-              className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,31 +83,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Navigation Dropdown */}
         {isMenuOpen && (
           <div style={{ 
             display: 'block', 
             backgroundColor: 'var(--bg-white)', 
             borderTop: '1px solid var(--border-color)' 
-          }} className="md:hidden">
-            <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          }}>
+            <div style={{ 
+              padding: '1rem'
+            }} className="flex flex-col gap-2 md:flex-row md:justify-center md:gap-4 md:flex-wrap">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    padding: '0.75rem', 
-                    color: 'var(--text-dark)', 
-                    textDecoration: 'none',
-                    borderRadius: '0.5rem',
-                    transition: 'all 0.2s ease'
-                  }}
+                  className="nav-link-mobile"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <item.icon size={16} />
                   <span>{item.name}</span>
                 </Link>
               ))}
@@ -132,21 +120,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="footer-content">
             <div className="footer-section">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-                <div style={{ 
-                  width: '2rem', 
-                  height: '2rem', 
-                  background: 'var(--bg-gradient)', 
-                  borderRadius: '50%', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center' 
-                }}>
-                  <BookOpen size={20} color="white" />
-                </div>
-                <span style={{ fontSize: '1.25rem', fontWeight: '700' }}>Luo Community History</span>
+                <Image
+                  src="/lln.svg"
+                  alt="Luo League of Nations Logo"
+                  width={32}
+                  height={32}
+                  style={{ objectFit: 'contain' }}
+                />
+                <span style={{ fontSize: '1.25rem', fontWeight: '700' }}>Luo League of Nations</span>
               </div>
               <p style={{ color: '#9ca3af', marginBottom: '1rem' }}>
-                Preserving and sharing the rich cultural heritage and history of the Luo community for future generations.
+                Preserving and sharing the rich cultural heritage and history of the Luo people for future generations.
               </p>
             </div>
             
@@ -157,6 +141,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/people">Notable People</Link></li>
                 <li><Link href="/places">Historical Places</Link></li>
                 <li><Link href="/events">Events</Link></li>
+                <li><Link href="/Gallery">Gallery</Link></li>
               </ul>
             </div>
             
@@ -170,7 +155,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           
           <div className="footer-bottom">
-            <p>&copy; 2024 Luo Community History. All rights reserved.</p>
+            <p>&copy; 2025 Luo League of Nations. All rights reserved.</p>
           </div>
         </div>
       </footer>

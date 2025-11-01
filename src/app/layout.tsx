@@ -14,8 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Luo Community History",
-  description: "Preserving and sharing the rich cultural heritage and history of the Luo community",
+  title: "Luo League of Nations",
+  description: "Preserving and sharing the rich cultural heritage and history of the Luo people",
+  icons: {
+    icon: "/LLNLOGO.svg",
+    shortcut: "/LLNLOGO.svg",
+    apple: "/LLNLOGO.svg",
+  },
 };
 
 export default function RootLayout({

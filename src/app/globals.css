@@ -18,6 +18,11 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), 'Courier New', monospace;
+  
+  /* New Colors */
+  --forest-green: #2E7D32;
+  --lake-blue: #0277BD;
+  --cream: #F5F5DC;
 }
 
 body {
@@ -72,6 +77,10 @@ body {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-4 {
@@ -178,6 +187,35 @@ body {
 
 .bg-gradient {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+/* New Color Utilities */
+.text-forest-green {
+  color: var(--forest-green);
+}
+
+.text-lake-blue {
+  color: var(--lake-blue);
+}
+
+.bg-forest-green {
+  background-color: var(--forest-green);
+}
+
+.bg-lake-blue {
+  background-color: var(--lake-blue);
+}
+
+.bg-cream {
+  background-color: var(--cream);
+}
+
+.border-forest-green {
+  border-color: var(--forest-green);
+}
+
+.border-lake-blue {
+  border-color: var(--lake-blue);
 }
 
 /* Spacing */
@@ -354,6 +392,22 @@ body {
   
   .md\:flex {
     display: flex;
+  }
+  
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  
+  .md\:justify-center {
+    justify-content: center;
+  }
+  
+  .md\:gap-4 {
+    gap: 1rem;
+  }
+  
+  .md\:flex-wrap {
+    flex-wrap: wrap;
   }
   
   .md\:text-left {
@@ -564,9 +618,27 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  position: relative;
 }
 
 .nav-link:hover {
+  color: var(--primary-color);
+}
+
+.nav-link-mobile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.nav-link-mobile:hover {
   color: var(--primary-color);
 }
 
