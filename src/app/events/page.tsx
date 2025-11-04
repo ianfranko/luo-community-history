@@ -215,19 +215,18 @@ export default function EventsPage() {
       {/* Past Events & Add Event */}
       <section className="section">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <h2 className="section-title">Recent Events</h2>
+        <h2 className="section-title">Recent Events</h2>
               <p className="section-subtitle">
                 Look back at recent community events and celebrations
               </p>
-              
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-2">
               <div className="space-y-4">
                 {pastEvents.map((event, index) => (
                   <div key={index} className="card">
                     <div className="card-body" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                       <div style={{ 
-                        width: '60px', 
+                        width: '80px', 
                         height: '60px', 
                         background: 'var(--bg-gradient)', 
                         borderRadius: '50%', 

@@ -36,9 +36,9 @@ export default function Home() {
   ]
 
   const stats = [
-    { number: '500+', label: 'Historical Articles' },
+    { number: '200+', label: 'Historical Articles' },
     { number: '100+', label: 'Cultural Stories' },
-    { number: '50+', label: 'Notable People' },
+    { number: '20+', label: 'Documentaries' },
     { number: '25+', label: 'Historical Places' }
   ]
 
@@ -173,9 +173,9 @@ export default function Home() {
                 <Users size={48} color="white" />
               </div>
               <div className="card-body">
-                <h3 className="card-title">Notable Luo Leaders</h3>
+                <h3 className="card-title"> Jo'Alego</h3>
                 <p className="card-text">
-                  Meet the influential leaders and elders who have shaped Luo community history and culture.
+                 Discover the rich culture of the Joalego, and their Journey to their current settlement.
                 </p>
                 <Link href="/people" className="btn btn-primary" style={{ marginTop: '1rem' }}>
                   Read More
