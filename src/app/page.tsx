@@ -173,7 +173,7 @@ export default function Home() {
                 <Users size={48} color="white" />
               </div>
               <div className="card-body">
-                <h3 className="card-title"> Jo'Alego</h3>
+                <h3 className="card-title"> JoAlego</h3>
                 <p className="card-text">
                  Discover the rich culture of the Joalego, and their Journey to their current settlement.
                 </p>
