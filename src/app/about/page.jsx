@@ -1,6 +1,7 @@
 
 import Link from 'next/link'
-import { Image, Users, Globe, Heart, Target, TrendingUp, ArrowRight, Award, Calendar, BookOpen, Map, Sparkles, HandHeart, GraduationCap } from 'lucide-react'
+import { Users, Globe, Heart, Target, TrendingUp, ArrowRight, Award, Calendar, BookOpen, Map, Sparkles, HandHeart, GraduationCap } from 'lucide-react'
+import Image from 'next/image'
 
 export default function AboutPage() {
   const missionValues = [
@@ -125,7 +126,7 @@ export default function AboutPage() {
             <div className="card">
               <div style={{ 
                 height: '300px', 
-                background: 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))',
+                background: '/luo_05.jpg',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

@@ -2,23 +2,41 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Events', href: '/events' },
+  { name: 'Gallery', href: '/Gallery' },
+  { name: 'Library', href: '/library' },
+  { name: 'About', href: '/about' },
+  { name: 'Drama', href: '/Drama' },
+  { name: 'Mentorship', href: '/mentorship' },
+  { name: 'Games', href: '/games' },
+]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+  const pathname = usePathname()
 
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Events', href: '/events' },
-    { name: 'Gallery', href: '/Gallery' },
-    { name: 'Library', href: '/library' },
-    { name: 'About', href: '/about' },
-    { name: 'Drama', href: '/Drama' },
-    { name: 'Mentorship', href: '/mentorship' },
-    { name: 'Games', href: '/games' },
-  ]
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isMenuOpen])
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-light)' }}>
@@ -38,7 +56,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             height: '4rem' 
           }}>
             {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link
+              href="/"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                textDecoration: 'none',
+              }}
+            >
               <Image
                 src="/LLNLOGO.svg"
                 alt="Luo League of Nations Logo"
@@ -52,30 +78,40 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav style={{ display: 'none' }} className="md:flex">
-              <div style={{ display: 'flex', gap: '2rem' }}>
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="nav-link"
-                  >
-                    <span>{item.name}</span>
-                  </Link>
-                ))}
+            <nav className="header-nav" aria-label="Primary navigation">
+              <div className="desktop-nav-links">
+                {navigation.map((item) => {
+                  const isActive =
+                    item.href === '/'
+                      ? pathname === item.href
+                      : pathname?.startsWith(item.href)
+
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
+                    >
+                      <span>{item.name}</span>
+                    </Link>
+                  )
+                })}
               </div>
             </nav>
 
             {/* Hamburger menu button */}
             <button
+              className="menu-toggle"
               style={{ 
-                display: 'block', 
                 padding: '0.5rem', 
                 color: 'var(--text-dark)', 
                 border: 'none', 
                 background: 'none',
                 cursor: 'pointer'
               }}
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,27 +121,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Navigation Dropdown */}
         {isMenuOpen && (
-          <div style={{ 
-            display: 'block', 
-            backgroundColor: 'var(--bg-white)', 
-            borderTop: '1px solid var(--border-color)' 
-          }}>
+          <nav
+            id="mobile-nav"
+            aria-label="Mobile navigation"
+            className="mobile-nav"
+          >
             <div style={{ 
               padding: '1rem'
             }} className="flex flex-col gap-2 md:flex-row md:justify-center md:gap-4 md:flex-wrap">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="nav-link-mobile"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <span>{item.name}</span>
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isActive =
+                  item.href === '/'
+                    ? pathname === item.href
+                    : pathname?.startsWith(item.href)
+
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`nav-link-mobile ${isActive ? 'nav-link-active' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span>{item.name}</span>
+                  </Link>
+                )
+              })}
               
             </div>
-          </div>
+          </nav>
         )}
       </header>
 

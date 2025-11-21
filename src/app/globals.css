@@ -537,6 +537,38 @@ body {
   margin-right: auto;
 }
 
+.cta-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+  color: white;
+  text-align: left;
+}
+
+.cta-stat {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cta-label {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-body {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+}
+
 /* Feature grid */
 .feature-grid {
   display: grid;
@@ -620,6 +652,20 @@ body {
 }
 
 /* Navigation styles */
+.header-nav {
+  display: none;
+}
+
+.desktop-nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: block;
+}
+
 .nav-link {
   color: var(--text-dark);
   text-decoration: none;
@@ -637,6 +683,26 @@ body {
   color: var(--primary-color);
 }
 
+.nav-link-active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.nav-link.nav-link-active::after {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.25rem;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.nav-link-mobile.nav-link-active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
 .nav-link-mobile {
   display: flex;
   align-items: center;
@@ -650,6 +716,39 @@ body {
 
 .nav-link-mobile:hover {
   color: var(--primary-color);
+}
+
+.mobile-nav {
+  width: 100%;
+  background-color: var(--bg-white);
+  border-top: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  animation: mobileNavReveal 0.2s ease;
+}
+
+@keyframes mobileNavReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .header-nav {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
 }
 
 /* Footer styles */
