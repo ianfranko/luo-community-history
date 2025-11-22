@@ -1,3 +1,4 @@
+'Use client';
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -142,27 +143,19 @@ export default function Home() {
         <div className="container">
           <div className="hero-content text-center">
             <h1 className="text-5xl font-bold mb-6">
-            WE ARE LUO AND WE ARE PROUD
+            Wan JoLuo And We Are Proud
             </h1>
             <p className="text-xl mb-8" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
             Awakening the Luo community to its full cultural, intellectual, and economic potential. Restoring unity, and purpose among our people.
             </p>
-            <div className="value-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
-              {valueProps.map((item) => (
-                <div key={item.title} style={{ padding: '1rem', borderRadius: 0, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)' }}>
-                  
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.4rem' }}>{item.title}</h3>
-                  <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.85)' }}>{item.description}</p>
-                </div>
-              ))}
-            </div>
+            
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/culture" className="btn btn-primary">
                 Join Community
               </Link>
-              <Link href="/Gallery" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.6)', color: 'white' }}>
-                View Gallery
+              <Link href="/Gallery" className="btn btn-primary">
+                View Literature Archive
               </Link>
             </div>
             <nav style={{ marginTop: '2rem' }}>
@@ -199,33 +192,31 @@ export default function Home() {
           <p className="section-subtitle">
             Hear directly from elders, educators, and culture-bearers using this archive
           </p>
-          <div className="feature-grid">
-            {testimonials.map((voice) => (
-              <blockquote key={voice.name} className="card" style={{ padding: '1.5rem' }}>
-                <p style={{ fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-                  “{voice.quote}”
-                </p>
-                <div>
-                  <span style={{ fontWeight: 600 }}>{voice.name}</span>
-                  <br />
-                  <span style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>{voice.title}</span>
-                </div>
-              </blockquote>
-            ))}
-          </div>
+          <div className="testimonial-grid">
+  {testimonials.map((voice) => (
+    <blockquote key={voice.name} className="testimonial-card">
+      <p className="testimonial-quote">
+        “{voice.quote}”
+      </p>
+      <div className="testimonial-author">
+        <span className="author-name">{voice.name}</span>
+        <br />
+        <span className="author-title">{voice.title}</span>
+      </div>
+    </blockquote>
+  ))}
+</div>
+
         </div>
       </section>
 
       {/* Gallery Section */}
       <section className="section" id="gallery">
         <div className="container">
-          <h2 className="section-title">Community Gallery</h2>
+          <h2 className="section-title">Community Archive</h2>
           <p className="section-subtitle">
             Photos, videos, and stories from our community events and activities
           </p>
-
-          
-
           <div
             className="feature-grid"
             style={{
@@ -336,7 +327,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Featured Content Section */}
       <section className="section bg-white" id="stories">
         <div className="container">
@@ -470,7 +460,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="cta-card">
+          <div className="cta-card cta-card-gradient">
             <div className="cta-stat">4,200+</div>
             <p className="cta-label">Artifacts digitized with village archives</p>
             <p className="cta-body">Join 120+ volunteers safeguarding oral histories across Nyanza and beyond.</p>

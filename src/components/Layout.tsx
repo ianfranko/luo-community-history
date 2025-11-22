@@ -8,10 +8,10 @@ import { usePathname } from 'next/navigation'
 
 const navigation = [
   { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
   { name: 'Events', href: '/events' },
   { name: 'Gallery', href: '/Gallery' },
-  { name: 'Library', href: '/library' },
-  { name: 'About', href: '/about' },
+  { name: 'Blogs', href: 'https://luoleagueofnations.com/Blogs/the-nile-valley-origins/' },
   { name: 'Drama', href: '/Drama' },
   { name: 'Mentorship', href: '/mentorship' },
   { name: 'Games', href: '/games' },

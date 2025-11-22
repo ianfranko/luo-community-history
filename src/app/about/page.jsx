@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { Users, Globe, Heart, Target, TrendingUp, ArrowRight, Award, Calendar, BookOpen, Map, Sparkles, HandHeart, GraduationCap } from 'lucide-react'
 import Image from 'next/image'
+import { image } from 'framer-motion/client'
 
 export default function AboutPage() {
   const missionValues = [
@@ -29,14 +30,14 @@ export default function AboutPage() {
 
   const keyInitiatives = [
     {
-      icon: GraduationCap,
+      image : '/657152Ew0bLSIn.jpg',
       title: 'Education Programs',
       description: 'Scholarship programs, mentorship initiatives, and educational resources supporting Luo students globally.',
       impact: '500+ Scholars',
       color: 'var(--primary-color)'
     },
     {
-      icon: HandHeart,
+      image: HandHeart,
       title: 'Community Development',
       description: 'Infrastructure projects, health initiatives, and economic empowerment programs in Luo regions.',
       impact: '50+ Projects',
@@ -124,17 +125,17 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="card">
-              <div style={{ 
-                height: '300px', 
-                background: '/luo_05.jpg',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                <Globe size={120} color="white" style={{ opacity: 0.3, position: 'absolute' }} />
-                <Users size={80} color="white" />
+            <div
+  style={{
+    height: '300px',
+    background: "url('/luo_05.jpg') center/cover no-repeat",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+  }}
+>
               </div>
               <div className="card-body">
                 <h3 className="card-title">Our Vision</h3>
@@ -190,12 +191,11 @@ export default function AboutPage() {
               <div key={index} className="card">
                 <div style={{ 
                   height: '200px', 
-                  background: `linear-gradient(135deg, ${initiative.color}, var(--secondary-color))`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}>
-                  <initiative.icon size={64} color="white" />
+
                 </div>
                 <div className="card-body">
                   <h3 className="card-title">{initiative.title}</h3>
