@@ -447,10 +447,11 @@ body {
 
 /* Hero section styles */
 .hero {
-  background: linear-gradient(135deg, rgba(51, 23, 3, 0.2), rgba(156, 56, 3, 0.9)), url('/COLLECTIE_TROPENMUSEUM_Luo_dansers_in_krijgskostuum_tijdens_de_Eldoret_Agricultural_Show_TMnr_20014318.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(51, 23, 3, 0.2), rgba(156, 56, 3, 0.9)),
+              url('/COLLECTIE_TROPENMUSEUM_Luo_dansers_in_krijgskostuum_tijdens_de_Eldoret_Agricultural_Show_TMnr_20014318.jpg') center/cover no-repeat;
   color: white;
   font-size: larger;
-  padding: 11rem 0;
+  padding: 11rem 1rem; /* base padding for desktop */
   position: relative;
   overflow: hidden;
 }
@@ -459,12 +460,10 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  /* First layer = black overlay, Second layer = grain texture */
   background:
-    rgba(0, 0, 0, 0.85), /* black overlay */
+    rgba(0, 0, 0, 0.85),
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><pattern id='grain' width='100' height='100' patternUnits='userSpaceOnUse'><circle cx='50' cy='50' r='1' fill='white' opacity='0.1'/></pattern></defs><rect width='100' height='100' fill='url(%23grain)'/></svg>");
   background-size: cover;
-  opacity: 1; /* keep full strength — you already control transparency above */
   pointer-events: none;
   z-index: 1;
 }
@@ -474,11 +473,47 @@ body {
   z-index: 2;
 }
 
-
 .hero-content {
   position: relative;
   z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
+
+/* Scalable heading and text */
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .hero {
+    padding: 6rem 1rem;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+  }
+
+  .hero-content p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+}
+
 
 /* Search styles */
 .search-container {
@@ -649,56 +684,27 @@ body {
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem; /* slightly reduced for small screens */
   margin-top: 3rem;
   padding: 0 1rem;
 }
 
-/* Individual testimonial card */
 .testimonial-card {
   background-color: var(--bg-white);
-  padding: 2rem;
-  border-radius: 0; /* sharp corners */
+  padding: 1.5rem; /* reduced padding for mobile */
+  border-radius: 0.5rem; /* slight rounding for touch-friendly */
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Hover effect */
-.testimonial-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-/* Quote styling */
 .testimonial-quote {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
   margin-bottom: 1rem;
-  color: var(--text-dark);
-  font-style: italic;
-  position: relative;
 }
 
-/* Optional: quotation marks */
-.testimonial-quote::before {
-  content: "“";
-  font-size: 2rem;
-  vertical-align: top;
-  color: var(--primary-color);
-  margin-right: 0.2rem;
-}
-
-.testimonial-quote::after {
-  content: "”";
-  font-size: 2rem;
-  vertical-align: bottom;
-  color: var(--primary-color);
-  margin-left: 0.2rem;
-}
-
-/* Author section */
 .testimonial-author {
   margin-top: 0.5rem;
 }
@@ -706,38 +712,76 @@ body {
 .author-name {
   font-weight: 600;
   color: var(--text-dark);
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .author-title {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
   color: var(--text-light);
 }
 
+/* Optional: reduce gap on very small devices */
+@media (max-width: 480px) {
+  .testimonial-grid {
+    gap: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1rem;
+  }
+}
+
 /* Stats section */
+/* ========================= */
+/* STATS SECTION RESPONSIVE  */
+/* ========================= */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem; /* smaller gap for mobile */
   margin-top: 3rem;
+  padding: 0 1rem; /* ensure padding on small screens */
 }
 
 .stat-item {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem; /* slightly smaller padding for mobile */
+  background-color: var(--bg-white);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .stat-number {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem); /* scales from mobile to desktop */
   font-weight: 700;
   color: var(--primary-color);
   display: block;
+  line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* scales nicely */
   color: var(--text-light);
   margin-top: 0.5rem;
 }
+
+/* Extra small devices adjustments */
+@media (max-width: 480px) {
+  .stats-grid {
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 0.75rem 1rem;
+  }
+}
+
 
 /* Navigation styles */
 .header-nav {

@@ -184,31 +184,49 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section
+  id="voices"
+  className="h-screen flex flex-col items-center justify-start overflow-hidden pt-6"
+>
+  <div className="container max-w-6xl mx-auto flex flex-col h-full">
 
-      {/* Community Voices */}
-      <section className="section" id="voices">
-        <div className="container">
-          <h2 className="section-title">Community Voices</h2>
-          <p className="section-subtitle">
-            Hear directly from elders, educators, and culture-bearers using this archive
+    {/* Title */}
+    <h2 className="section-title text-center mb-1">Community Voices</h2>
+
+    {/* Subtitle */}
+    <p className="section-subtitle text-center mb-4">
+      Hear directly from elders, educators, and culture-bearers using this archive
+    </p>
+
+    {/* IMAGE (fixed height, always fits) */}
+    <div className="flex justify-center mb-4">
+      <Image
+        src="/luo_03.jpg"
+        alt="Community Archive"
+        width={1600}
+        height={800}
+        className="object-cover w-full max-w-4xl max-h-[32vh] shadow"
+      />
+    </div>
+
+    {/* TESTIMONIALS — auto-fill remaining space */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow overflow-hidden">
+      {testimonials.map((voice) => (
+        <blockquote key={voice.name} className="testimonial-card overflow-hidden p-4">
+          <p className="testimonial-quote text-sm">
+            “{voice.quote}”
           </p>
-          <div className="testimonial-grid">
-  {testimonials.map((voice) => (
-    <blockquote key={voice.name} className="testimonial-card">
-      <p className="testimonial-quote">
-        “{voice.quote}”
-      </p>
-      <div className="testimonial-author">
-        <span className="author-name">{voice.name}</span>
-        <br />
-        <span className="author-title">{voice.title}</span>
-      </div>
-    </blockquote>
-  ))}
-</div>
+          <div className="testimonial-author mt-2">
+            <span className="author-name font-semibold">{voice.name}</span>
+            <br />
+            <span className="author-title text-xs">{voice.title}</span>
+          </div>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
 
-        </div>
-      </section>
 
       {/* Gallery Section */}
       <section className="section" id="gallery">
