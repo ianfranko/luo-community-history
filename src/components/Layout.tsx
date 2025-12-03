@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ShoppingBag } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const navigation = [
@@ -11,7 +11,7 @@ const navigation = [
   { name: 'About', href: '/about' },
   { name: 'Events', href: '/events' },
   { name: 'Gallery', href: '/Gallery' },
-  { name: 'Blogs', href: 'https://luoleagueofnations.com/Blogs/the-nile-valley-origins/' },
+  { name: 'Blogs', href: '/BlogList' },
   { name: 'Drama', href: '/Drama' },
   { name: 'Mentorship', href: '/mentorship' },
   { name: 'Games', href: '/games' },
@@ -41,19 +41,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-light)' }}>
       {/* Header */}
-      <header style={{ 
-        backgroundColor: 'var(--bg-white)', 
-        boxShadow: 'var(--shadow-lg)', 
-        position: 'sticky', 
-        top: 0, 
-        zIndex: 50 
+      <header style={{
+        backgroundColor: 'var(--bg-white)',
+        boxShadow: 'var(--shadow-lg)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
       }}>
         <div className="container">
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            height: '4rem' 
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            height: '4rem'
           }}>
             {/* Logo */}
             <Link
@@ -99,13 +99,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </nav>
 
+            {/* Shop Merch Link */}
+            <Link
+              href="/shop"
+              className="nav-link"
+              style={{
+                marginLeft: '2rem'
+              }}
+            >
+              <ShoppingBag size={20} />
+              <span className="shop-text">Shop</span>
+            </Link>
+
             {/* Hamburger menu button */}
             <button
               className="menu-toggle"
-              style={{ 
-                padding: '0.5rem', 
-                color: 'var(--text-dark)', 
-                border: 'none', 
+              style={{
+                padding: '0.5rem',
+                color: 'var(--text-dark)',
+                border: 'none',
                 background: 'none',
                 cursor: 'pointer'
               }}
@@ -126,7 +138,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             aria-label="Mobile navigation"
             className="mobile-nav"
           >
-            <div style={{ 
+            <div style={{
               padding: '1rem'
             }} className="flex flex-col gap-2 md:flex-row md:justify-center md:gap-4 md:flex-wrap">
               {navigation.map((item) => {
@@ -146,7 +158,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 )
               })}
-              
+
+              {/* Shop Merch in Mobile Nav */}
+              <Link
+                href="/shop"
+                className="nav-link-mobile"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShoppingBag size={20} />
+                <span>Shop Merch</span>
+              </Link>
+
             </div>
           </nav>
         )}
@@ -176,7 +198,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Preserving and sharing the rich cultural heritage and history of the Luo people for future generations.
               </p>
             </div>
-            
+
             <div className="footer-section">
               <h3>Quick Links</h3>
               <ul>
@@ -187,7 +209,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/Gallery">Gallery</Link></li>
               </ul>
             </div>
-            
+
             <div className="footer-section">
               <h3>Community</h3>
               <ul>
@@ -196,14 +218,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </ul>
             </div>
           </div>
-          
+
           <div className="footer-bottom">
             <p>&copy; 2025 Luo League of Nations. All rights reserved.</p>
           </div>
         </div>
       </footer>
 
-      
+
     </div>
   )
 }

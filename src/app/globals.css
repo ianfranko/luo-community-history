@@ -18,7 +18,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), 'Courier New', monospace;
-  
+
   /* New Colors */
   --forest-green: #2E7D32;
   --lake-blue: #0277BD;
@@ -95,15 +95,15 @@ body {
   gap: 2rem;
 }
 
-.space-y-4 > * + * {
+.space-y-4>*+* {
   margin-top: 1rem;
 }
 
-.space-y-6 > * + * {
+.space-y-6>*+* {
   margin-top: 1.5rem;
 }
 
-.space-y-8 > * + * {
+.space-y-8>*+* {
   margin-top: 2rem;
 }
 
@@ -385,40 +385,40 @@ body {
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   .md\:flex {
     display: flex;
   }
-  
+
   .md\:flex-row {
     flex-direction: row;
   }
-  
+
   .md\:justify-center {
     justify-content: center;
   }
-  
+
   .md\:gap-4 {
     gap: 1rem;
   }
-  
+
   .md\:flex-wrap {
     flex-wrap: wrap;
   }
-  
+
   .md\:text-left {
     text-align: left;
   }
-  
+
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-  
+
   .md\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -429,16 +429,16 @@ body {
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  
+
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  
+
   .lg\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -448,10 +448,10 @@ body {
 /* Hero section styles */
 .hero {
   background: linear-gradient(135deg, rgba(51, 23, 3, 0.2), rgba(156, 56, 3, 0.9)),
-              url('/COLLECTIE_TROPENMUSEUM_Luo_dansers_in_krijgskostuum_tijdens_de_Eldoret_Agricultural_Show_TMnr_20014318.jpg') center/cover no-repeat;
+    url('/COLLECTIE_TROPENMUSEUM_Luo_dansers_in_krijgskostuum_tijdens_de_Eldoret_Agricultural_Show_TMnr_20014318.jpg') center/cover no-repeat;
   color: white;
-  font-size: larger;
-  padding: 11rem 1rem; /* base padding for desktop */
+  padding: 11rem 0rem;
+  /* base padding for desktop */
   position: relative;
   overflow: hidden;
 }
@@ -468,7 +468,7 @@ body {
   z-index: 1;
 }
 
-.hero > * {
+.hero>* {
   position: relative;
   z-index: 2;
 }
@@ -483,14 +483,12 @@ body {
 
 /* Scalable heading and text */
 .hero-content h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 .hero-content p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -585,7 +583,6 @@ body {
 .cta-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
   padding: 2rem;
   backdrop-filter: blur(12px);
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
@@ -597,8 +594,7 @@ body {
   background: linear-gradient(135deg, rgba(249, 116, 22, 0.551), rgba(234, 88, 12, 0.85));
   backdrop-filter: blur(10px);
   color: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -684,16 +680,19 @@ body {
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem; /* slightly reduced for small screens */
+  gap: 1.5rem;
+  /* slightly reduced for small screens */
   margin-top: 3rem;
   padding: 0 1rem;
 }
 
 .testimonial-card {
   background-color: var(--bg-white);
-  padding: 1.5rem; /* reduced padding for mobile */
-  border-radius: 0.5rem; /* slight rounding for touch-friendly */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  /* reduced padding for mobile */
+  border-radius: 0.5rem;
+  /* slight rounding for touch-friendly */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -738,14 +737,17 @@ body {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem; /* smaller gap for mobile */
+  gap: 1.5rem;
+  /* smaller gap for mobile */
   margin-top: 3rem;
-  padding: 0 1rem; /* ensure padding on small screens */
+  padding: 0 1rem;
+  /* ensure padding on small screens */
 }
 
 .stat-item {
   text-align: center;
-  padding: 1rem 1.5rem; /* slightly smaller padding for mobile */
+  padding: 1rem 1.5rem;
+  /* slightly smaller padding for mobile */
   background-color: var(--bg-white);
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
@@ -758,7 +760,8 @@ body {
 }
 
 .stat-number {
-  font-size: clamp(2rem, 5vw, 3rem); /* scales from mobile to desktop */
+  font-size: clamp(2rem, 5vw, 3rem);
+  /* scales from mobile to desktop */
   font-weight: 700;
   color: var(--primary-color);
   display: block;
@@ -766,7 +769,8 @@ body {
 }
 
 .stat-label {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* scales nicely */
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  /* scales nicely */
   color: var(--text-light);
   margin-top: 0.5rem;
 }
@@ -863,6 +867,7 @@ body {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -926,4 +931,89 @@ body {
   padding-top: 1rem;
   text-align: center;
   color: #9ca3af;
+}
+
+/* ========================= */
+/* IMAGE CAROUSEL STYLES     */
+/* ========================= */
+
+/* Carousel image transition */
+.carousel-image-transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Carousel navigation buttons */
+.carousel-nav-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-nav-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-nav-button:active {
+  transform: scale(0.95);
+}
+
+/* Thumbnail hover effect */
+.carousel-thumbnail {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile responsiveness for carousel */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 350px !important;
+  }
+
+  .carousel-caption {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  .carousel-thumbnail {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .carousel-nav-button {
+    padding: 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 280px !important;
+  }
+
+  .carousel-caption {
+    font-size: 0.9rem !important;
+  }
+
+  .carousel-thumbnail {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.carousel-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }

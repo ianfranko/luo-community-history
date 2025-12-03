@@ -30,7 +30,7 @@ export default function AboutPage() {
 
   const keyInitiatives = [
     {
-      image : '/657152Ew0bLSIn.jpg',
+      image: '/657152Ew0bLSIn.jpg',
       title: 'Education Programs',
       description: 'Scholarship programs, mentorship initiatives, and educational resources supporting Luo students globally.',
       impact: '500+ Scholars',
@@ -90,7 +90,7 @@ export default function AboutPage() {
               About Luo League of Nations
             </h1>
             <p className="text-xl mb-8" style={{ maxWidth: '800px', margin: '0 auto 2rem' }}>
-              A global movement dedicated to uniting Luo communities worldwide, preserving our rich 
+              A global movement dedicated to uniting Luo communities worldwide, preserving our rich
               cultural heritage, and empowering our people through education, development, and cultural exchange.
             </p>
           </div>
@@ -107,45 +107,45 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4">
                 <p style={{ color: 'var(--text-dark)', lineHeight: '1.8', marginBottom: '1rem' }}>
-                  The Luo League of Nations is a premier international organization that brings together 
-                  Luo people from across the globe. Founded on the principles of unity, cultural preservation, 
+                  The Luo League of Nations is a premier international organization that brings together
+                  Luo people from across the globe. Founded on the principles of unity, cultural preservation,
                   and community empowerment, we serve as a bridge connecting our homeland to the diaspora.
                 </p>
                 <p style={{ color: 'var(--text-dark)', lineHeight: '1.8', marginBottom: '1rem' }}>
-                  We are more than just an organization—we are a family bound by shared heritage, language, 
-                  and values. From the shores of Lake Victoria to major cities across six continents, our 
-                  network spans the globe, ensuring that no matter where Luo people are, they remain connected 
+                  We are more than just an organization—we are a family bound by shared heritage, language,
+                  and values. From the shores of Lake Victoria to major cities across six continents, our
+                  network spans the globe, ensuring that no matter where Luo people are, they remain connected
                   to their roots.
                 </p>
                 <p style={{ color: 'var(--text-dark)', lineHeight: '1.8' }}>
-                  Through cultural events, educational programs, development projects, and advocacy, we work 
-                  tirelessly to uplift our communities, preserve our traditions, and create opportunities for 
+                  Through cultural events, educational programs, development projects, and advocacy, we work
+                  tirelessly to uplift our communities, preserve our traditions, and create opportunities for
                   future generations to thrive while staying connected to their heritage.
                 </p>
               </div>
             </div>
             <div className="card">
-            <div
-  style={{
-    height: '300px',
-    background: "url('/luo_05.jpg') center/cover no-repeat",
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-  }}
->
+              <div
+                style={{
+                  height: '300px',
+                  background: "url('/luo_05.jpg') center/cover no-repeat",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
               </div>
               <div className="card-body">
                 <h3 className="card-title">Our Vision</h3>
                 <p className="card-text" style={{ marginBottom: '1rem' }}>
-                  To be the leading global platform for Luo unity, cultural preservation, and community 
+                  To be the leading global platform for Luo unity, cultural preservation, and community
                   development, ensuring our heritage thrives for generations to come.
                 </p>
                 <h3 className="card-title">Our Mission</h3>
                 <p className="card-text">
-                  To unite, empower, and celebrate Luo communities worldwide through cultural preservation, 
+                  To unite, empower, and celebrate Luo communities worldwide through cultural preservation,
                   education, economic development, and fostering strong networks across the diaspora.
                 </p>
               </div>
@@ -161,7 +161,7 @@ export default function AboutPage() {
           <p className="section-subtitle">
             The principles that guide everything we do
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {missionValues.map((value, index) => (
               <div key={index} className="card">
@@ -178,7 +178,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Key Initiatives */}
+      {/* Key Initiatives 
       <section className="section">
         <div className="container">
           <h2 className="section-title">Key Initiatives</h2>
@@ -221,7 +221,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Timeline of Achievements */}
       <section className="section bg-white">
@@ -230,7 +230,7 @@ export default function AboutPage() {
           <p className="section-subtitle">
             Major milestones in our mission to unite and empower Luo communities
           </p>
-          
+
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             {achievements.map((achievement, index) => (
               <div key={index} className="card" style={{ marginBottom: '1.5rem' }}>
@@ -273,19 +273,19 @@ export default function AboutPage() {
           </p>
           <div className="stats-grid">
             <div className="stat-item">
-              <span className="stat-number">15+</span>
+              <span className="stat-number">5+</span>
               <span className="stat-label">Countries with Active Chapters</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">50,000+</span>
+              <span className="stat-number">1,000+</span>
               <span className="stat-label">Community Members</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">500+</span>
-              <span className="stat-label">Scholarship Beneficiaries</span>
+              <span className="stat-number">5+</span>
+              <span className="stat-label">Beneficiaries</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">100+</span>
+              <span className="stat-number">10+</span>
               <span className="stat-label">Development Projects</span>
             </div>
           </div>
@@ -299,7 +299,7 @@ export default function AboutPage() {
           <p className="section-subtitle">
             The distinctive qualities that set the Luo League of Nations apart
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="card">
               <div className="card-body">
@@ -308,8 +308,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="card-title">Global Network</h3>
                 <p className="card-text">
-                  The most extensive network of Luo communities worldwide, spanning from East Africa 
-                  to Europe, North America, Australia, and beyond. We connect diaspora members with 
+                  The most extensive network of Luo communities worldwide, spanning from East Africa
+                  to Europe, North America, Australia, and beyond. We connect diaspora members with
                   their homeland, ensuring cultural continuity across continents.
                 </p>
               </div>
@@ -322,8 +322,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="card-title">Action-Oriented</h3>
                 <p className="card-text">
-                  We don't just talk—we act. From building schools and health centers to providing 
-                  scholarships and mentorship, every initiative is designed to create tangible, 
+                  We don't just talk—we act. From building schools and health centers to providing
+                  scholarships and mentorship, every initiative is designed to create tangible,
                   measurable impact in the lives of our community members.
                 </p>
               </div>
@@ -336,8 +336,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="card-title">Inclusive Leadership</h3>
                 <p className="card-text">
-                  Our leadership structure includes representatives from all Luo regions and diaspora 
-                  communities, ensuring diverse voices are heard and all perspectives are considered 
+                  Our leadership structure includes representatives from all Luo regions and diaspora
+                  communities, ensuring diverse voices are heard and all perspectives are considered
                   in our decision-making processes.
                 </p>
               </div>
@@ -350,8 +350,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="card-title">Cultural Innovation</h3>
                 <p className="card-text">
-                  While preserving tradition, we embrace innovation. Through digital platforms, 
-                  modern media, and creative programming, we make Luo culture accessible and 
+                  While preserving tradition, we embrace innovation. Through digital platforms,
+                  modern media, and creative programming, we make Luo culture accessible and
                   relevant to younger generations raised anywhere in the world.
                 </p>
               </div>
@@ -367,29 +367,22 @@ export default function AboutPage() {
             Join the Luo League of Nations
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)', maxWidth: '700px', margin: '0 auto 2rem' }}>
-            Be part of a global movement preserving our heritage and building a brighter future 
+            Be part of a global movement preserving our heritage and building a brighter future
             for Luo communities worldwide. Together, we are stronger.
           </p>
-          
+
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/contribute" className="btn btn-outline" style={{ 
-              borderColor: 'white', 
+            <Link href="/https://chat.whatsapp.com/Bm1ARcumAcS4Tpso1wJL1P?mode=hqrc" className="btn btn-outline" style={{
+              borderColor: 'white',
               color: 'white',
               background: 'rgba(255, 255, 255, 0.1)'
             }}>
               <Users size={20} />
               Become a Member
             </Link>
-            <Link href="/events" className="btn btn-outline" style={{ 
-              borderColor: 'white', 
-              color: 'white',
-              background: 'rgba(255, 255, 255, 0.1)'
-            }}>
-              <Calendar size={20} />
-              Upcoming Events
-            </Link>
-            <Link href="/contribute" className="btn btn-outline" style={{ 
-              borderColor: 'white', 
+
+            <Link href="/https://chat.whatsapp.com/Bm1ARcumAcS4Tpso1wJL1P?mode=hqrc" className="btn btn-outline" style={{
+              borderColor: 'white',
               color: 'white',
               background: 'rgba(255, 255, 255, 0.1)'
             }}>

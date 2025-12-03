@@ -93,7 +93,7 @@ export default function EventsPage() {
               Community Events
             </h1>
             <p className="text-xl mb-8" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-              Stay connected with the Luo community through cultural events, celebrations, 
+              Stay connected with the Luo community through cultural events, celebrations,
               and gatherings that bring us together and preserve our heritage.
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function EventsPage() {
           <p className="section-subtitle">
             Discover different types of events in the Luo community
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {eventTypes.map((type, index) => (
               <div key={index} className="card">
@@ -118,17 +118,17 @@ export default function EventsPage() {
                   <h3 className="card-title">{type.title}</h3>
                   <p className="card-text">{type.description}</p>
                   <div style={{ marginTop: '1rem' }}>
-                    <span style={{ 
-                      fontSize: '1.5rem', 
-                      fontWeight: '700', 
-                      color: 'var(--primary-color)' 
+                    <span style={{
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      color: 'var(--primary-color)'
                     }}>
                       {type.count}
                     </span>
-                    <span style={{ 
-                      fontSize: '0.875rem', 
-                      color: 'var(--text-light)', 
-                      display: 'block' 
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: 'var(--text-light)',
+                      display: 'block'
                     }}>
                       events
                     </span>
@@ -147,12 +147,12 @@ export default function EventsPage() {
           <p className="section-subtitle">
             Join us for these upcoming community events and celebrations
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {upcomingEvents.map((event, index) => (
               <div key={index} className="card">
-                <div style={{ 
-                  height: '150px', 
+                <div style={{
+                  height: '150px',
                   background: 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))',
                   display: 'flex',
                   alignItems: 'center',
@@ -162,7 +162,7 @@ export default function EventsPage() {
                 </div>
                 <div className="card-body">
                   <h3 className="card-title">{event.title}</h3>
-                  
+
                   <div className="space-y-2" style={{ marginBottom: '1rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Calendar size={16} color="var(--text-light)" />
@@ -183,24 +183,24 @@ export default function EventsPage() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <p className="card-text">{event.description}</p>
-                  
-                  <div style={{ 
-                    marginTop: '1rem', 
-                    padding: '0.75rem', 
-                    backgroundColor: 'var(--bg-light)', 
-                    borderRadius: '0.5rem' 
+
+                  <div style={{
+                    marginTop: '1rem',
+                    padding: '0.75rem',
+                    backgroundColor: 'var(--bg-light)',
+                    borderRadius: '0.5rem'
                   }}>
-                    <p style={{ 
-                      fontSize: '0.875rem', 
-                      color: 'var(--text-dark)', 
-                      fontWeight: '600' 
+                    <p style={{
+                      fontSize: '0.875rem',
+                      color: 'var(--text-dark)',
+                      fontWeight: '600'
                     }}>
                       Organized by: {event.organizer}
                     </p>
                   </div>
-                  
+
                   <button className="btn btn-primary" style={{ marginTop: '1rem' }}>
                     Learn More
                     <ArrowRight size={16} />
@@ -212,121 +212,6 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Past Events & Add Event */}
-      <section className="section">
-        <div className="container">
-        <h2 className="section-title">Recent Events</h2>
-              <p className="section-subtitle">
-                Look back at recent community events and celebrations
-              </p>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <div className="lg:col-span-2">
-              <div className="space-y-4">
-                {pastEvents.map((event, index) => (
-                  <div key={index} className="card">
-                    <div className="card-body" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div style={{ 
-                        width: '80px', 
-                        height: '60px', 
-                        background: 'var(--bg-gradient)', 
-                        borderRadius: '50%', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center' 
-                      }}>
-                        <Calendar size={24} color="white" />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.25rem' }}>
-                          {event.title}
-                        </h4>
-                        <p style={{ 
-                          color: 'var(--primary-color)', 
-                          fontSize: '0.875rem', 
-                          fontWeight: '600',
-                          marginBottom: '0.25rem' 
-                        }}>
-                          {event.type}
-                        </p>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <Calendar size={14} color="var(--text-light)" />
-                          <span style={{ fontSize: '0.875rem', color: 'var(--text-light)' }}>
-                            {new Date(event.date).toLocaleDateString()}
-                          </span>
-                          <span style={{ color: 'var(--text-light)' }}>•</span>
-                          <MapPin size={14} color="var(--text-light)" />
-                          <span style={{ fontSize: '0.875rem', color: 'var(--text-light)' }}>
-                            {event.location}
-                          </span>
-                        </div>
-                        <p style={{ fontSize: '0.875rem', color: 'var(--text-light)', marginTop: '0.25rem' }}>
-                          {event.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              
-              
-              <div className="card" style={{ marginTop: '1.5rem' }}>
-                <div className="card-body">
-                  <h3 className="card-title">Event Calendar</h3>
-                  <p className="card-text">
-                    View all upcoming events in a calendar format to see what&apos;s happening 
-                    in the Luo community.
-                  </p>
-                  <Link href="/events/calendar" className="btn btn-outline" style={{ marginTop: '1rem' }}>
-                    View Calendar
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="card" style={{ marginTop: '1.5rem' }}>
-                <div className="card-body">
-                  <h3 className="card-title">Event Notifications</h3>
-                  <p className="card-text">
-                    Stay updated with the latest events by subscribing to our event notifications.
-                  </p>
-                  <button className="btn btn-outline" style={{ marginTop: '1rem' }}>
-                    <Users size={16} />
-                    Subscribe
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Statistics */}
-      <section className="section bg-white">
-        <div className="container">
-          <div className="stats-grid">
-            <div className="stat-item">
-              <span className="stat-number">85+</span>
-              <span className="stat-label">Community Events</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">25+</span>
-              <span className="stat-label">Cultural Celebrations</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">18+</span>
-              <span className="stat-label">Music & Arts Events</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">30+</span>
-              <span className="stat-label">Community Gatherings</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action */}
       <section className="section bg-gradient" style={{ color: 'white' }}>
         <div className="container text-center">
@@ -334,14 +219,14 @@ export default function EventsPage() {
             Join Our Community Events
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Be part of the vibrant Luo community by participating in our cultural events, 
+            Be part of the vibrant Luo community by participating in our cultural events,
             celebrations, and gatherings that strengthen our bonds and preserve our heritage.
           </p>
-          
+
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem' }}>
-            <Link href="/events/calendar" className="btn btn-outline" style={{ 
-              borderColor: 'white', 
-              color: 'white' 
+            <Link href="/events/calendar" className="btn btn-outline" style={{
+              borderColor: 'white',
+              color: 'white'
             }}>
               View All Events
               <ArrowRight size={20} />
