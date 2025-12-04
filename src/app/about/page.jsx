@@ -109,10 +109,10 @@ export default function AboutPage() {
                 <p style={{ color: 'var(--text-dark)', lineHeight: '1.8', marginBottom: '1rem' }}>
                   The Luo League of Nations is a premier international organization that brings together
                   Luo people from across the globe. Founded on the principles of unity, cultural preservation,
-                  and community empowerment, we serve as a bridge connecting our homeland to the diaspora.
+                  and community empowerment, we serve as a bridge connecting our homeland to its people.
                 </p>
                 <p style={{ color: 'var(--text-dark)', lineHeight: '1.8', marginBottom: '1rem' }}>
-                  We are more than just an organization—we are a family bound by shared heritage, language,
+                  We are more than just an organization; we are a family bound by shared heritage, language,
                   and values. From the shores of Lake Victoria to major cities across six continents, our
                   network spans the globe, ensuring that no matter where Luo people are, they remain connected
                   to their roots.
