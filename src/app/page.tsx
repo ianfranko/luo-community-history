@@ -1,59 +1,56 @@
-'Use client';
+'use client';
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
 
 export default function Home() {
   const galleryItems = [
     {
       image: '/Fishermen-on-Lake-Victoria-in-Uganda.webp',
-      title: 'Documentary Films',
       description: 'Explore the fascinating history of the Luo community, from ancient traditions to modern developments.',
       alt: 'Luo fishermen casting their nets on Lake Victoria at sunrise',
       category: 'Heritage Films',
       location: 'Lake Victoria, Homa Bay',
       year: '1962 archive',
-      mediaType: 'Documentary',
       ctaLabel: 'Watch Film',
-      href: '/Gallery'
+      href: '/Gallery',
+      title: 'Documentary Films'
     },
     {
       image: '/hero.jpeg',
-      title: 'Plays and Theatre',
       description: 'Discover the unique cultural practices, traditions, and values that define the Luo community.',
       alt: 'Actors performing a traditional Luo play on stage',
       category: 'Performance Arts',
       location: 'Nairobi National Theatre',
       year: '1978 revival',
-      mediaType: 'Stage Play',
       ctaLabel: 'View Script',
-      href: '/culture'
+      href: '/culture',
+      title: 'Plays and Theatre'
     },
     {
       image: '/Kodhek Argwins.png',
-      title: 'Notable People',
       description: 'Learn about influential Luo leaders, elders, and community members who shaped our history.',
       alt: 'Archival portrait of Argwings Kodhek',
       category: 'Community Voices',
       location: 'Kisumu & Alego',
       year: '1960s oral records',
-      mediaType: 'Photo Archive',
       ctaLabel: 'View Profile',
-      href: '/people'
+      href: '/people',
+      title: 'Community Voices'
     },
     {
       image: '/Guerrier_Luo.jpeg',
-      title: 'Historical Places',
       description: 'Visit significant locations and landmarks that hold cultural and historical importance.',
       alt: 'Historic Luo warrior statue in Kisumu museum',
       category: 'Sites & Landmarks',
       location: 'Kisumu Museum',
       year: '1930s exhibit',
-      mediaType: 'Photo Essay',
       ctaLabel: 'Explore Site',
-      href: '/places'
+      href: '/places',
+      title: 'Sites & Landmarks'
     },
-    
+
   ]
 
   const galleryThemes = ['All', ...new Set(galleryItems.map((item) => item.category))]
@@ -74,17 +71,17 @@ export default function Home() {
     {
       title: 'Archive Access',
       description: 'Digitised oral histories, ceremonies, and timelines ready to explore.',
-      
+
     },
     {
       title: 'Community Voices',
       description: 'Stories curated with elders, scholars, and youth leaders.',
-      
+
     },
     {
       title: 'Living Culture',
       description: 'Guides on language, music, crafts, and celebrations to keep traditions alive.',
-      
+
     }
   ]
 
@@ -136,19 +133,57 @@ export default function Home() {
     }
   ]
 
+  const voiceGalleryImages = [
+    {
+      image: '/hero.jpeg',
+      alt: 'Community elder sharing traditional stories',
+      caption: 'Preserving oral traditions for future generations'
+    },
+    {
+      image: '/Fishermen-on-Lake-Victoria-in-Uganda.webp',
+      alt: 'Fishermen on Lake Victoria',
+      caption: 'Daily life and livelihoods of our people'
+    },
+    {
+      image: '/657152Ew0bLSIn.jpg',
+      alt: 'Traditional cultural ceremony',
+      caption: 'Celebrating our rich cultural heritage'
+    },
+    {
+      image: '/Guerrier_Luo.jpeg',
+      alt: 'Historical Luo warrior',
+      caption: 'Honoring our ancestors and their legacy'
+    },
+    {
+      image: '/Kenia-Lake_Victoria-Fischer.webp',
+      alt: 'Lake Victoria landscape',
+      caption: 'The heart of our homeland'
+    }
+  ]
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % voiceGalleryImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + voiceGalleryImages.length) % voiceGalleryImages.length)
+  }
+
   return (
     <>
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
           <div className="hero-content text-center">
-            <h1 className="text-5xl font-bold mb-6">
-            Wan JoLuo And We Are Proud
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Wan JoLuo And We Are Proud
             </h1>
-            <p className="text-xl mb-8" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-            Awakening the Luo community to its full cultural, intellectual, and economic potential. Restoring unity, and purpose among our people.
+            <p className="text-xl mb-8" style={{ maxWidth: '700px', margin: '0 auto 3rem' }}>
+              Awakening the Luo community to its full cultural, intellectual, and economic potential. Restoring unity, and purpose among our people.
             </p>
-            
+
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/culture" className="btn btn-primary">
@@ -171,7 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section 
       <section className="section bg-white" style={{ padding: '1rem 0' }}>
         <div className="container">
           <div className="stats-grid">
@@ -183,52 +218,11 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
-      <section
-  id="voices"
-  className="h-screen flex flex-col items-center justify-start overflow-hidden pt-6"
->
-  <div className="container max-w-6xl mx-auto flex flex-col h-full">
-
-    {/* Title */}
-    <h2 className="section-title text-center mb-1">Community Voices</h2>
-
-    {/* Subtitle */}
-    <p className="section-subtitle text-center mb-4">
-      Hear directly from elders, educators, and culture-bearers using this archive
-    </p>
-
-    {/* IMAGE (fixed height, always fits) */}
-    <div className="flex justify-center mb-4">
-      <Image
-        src="/luo_03.jpg"
-        alt="Community Archive"
-        width={1600}
-        height={800}
-        className="object-cover w-full max-w-4xl max-h-[32vh] shadow"
-      />
-    </div>
-
-    {/* TESTIMONIALS — auto-fill remaining space */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow overflow-hidden">
-      {testimonials.map((voice) => (
-        <blockquote key={voice.name} className="testimonial-card overflow-hidden p-4">
-          <p className="testimonial-quote text-sm">
-            “{voice.quote}”
-          </p>
-          <div className="testimonial-author mt-2">
-            <span className="author-name font-semibold">{voice.name}</span>
-            <br />
-            <span className="author-title text-xs">{voice.title}</span>
-          </div>
-        </blockquote>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>*/}
 
 
-      {/* Gallery Section */}
+
+      {/* Community Archive Section */}
       <section className="section" id="gallery">
         <div className="container">
           <h2 className="section-title">Community Archive</h2>
@@ -283,7 +277,7 @@ export default function Home() {
                         letterSpacing: '0.08em'
                       }}
                     >
-                      {item.mediaType}
+
                     </span>
                     <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem' }}>
                       {item.location}
@@ -345,6 +339,49 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section
+        id="voices"
+        className="section bg-cream"
+      >
+        <div className="container">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="section-title mb-4">Voice of the People</h2>
+            <p className="section-subtitle mx-auto max-w-2xl">
+              Hear directly from elders, educators, and culture-bearers using this archive to preserve our heritage.
+            </p>
+          </div>
+
+
+
+          {/* Testimonials Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((voice) => (
+              <blockquote
+                key={voice.name}
+                className="bg-white p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100"
+              >
+                <div className="mb-6 text-primary">
+                  <Quote size={32} className="opacity-80" />
+                </div>
+                <p className="text-gray-700 italic text-lg mb-6 flex-grow leading-relaxed">
+                  &quot;{voice.quote}&quot;
+                </p>
+                <div className="mt-auto border-t border-gray-100 pt-4">
+                  <div className="font-bold text-gray-900 text-lg">{voice.name}</div>
+                  <div className="text-sm text-primary font-medium uppercase tracking-wide">{voice.title}</div>
+                </div>
+              </blockquote>
+            ))}
+          </div>
+
+          <div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Featured Content Section */}
       <section className="section bg-white" id="stories">
         <div className="container">
@@ -352,7 +389,7 @@ export default function Home() {
           <p className="section-subtitle">
             Discover the most popular and recent additions to our community archive
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredStories.map((story) => (
               <div className="card" key={story.title}>
@@ -361,7 +398,6 @@ export default function Home() {
                     position: 'relative',
                     height: '200px',
                     width: '100%',
-                    borderRadius: '12px 12px 0 0',
                     overflow: 'hidden'
                   }}
                 >
@@ -479,9 +515,9 @@ export default function Home() {
           </div>
 
           <div className="cta-card cta-card-gradient">
-            <div className="cta-stat">4,200+</div>
+            <div className="cta-stat">1,000+</div>
             <p className="cta-label">Artifacts digitized with village archives</p>
-            <p className="cta-body">Join 120+ volunteers safeguarding oral histories across Nyanza and beyond.</p>
+            <p className="cta-body">Join 30+ volunteers safeguarding oral histories across Kenya and beyond.</p>
           </div>
         </div>
       </section>
