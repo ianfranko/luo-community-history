@@ -43,6 +43,12 @@ const products = [
         name: 'Leather Skin Carpets',
         image: '/shop/leather_carpet_1764846590965.png',
         description: 'High-quality natural cowhide rugs with unique patterns.'
+    },
+    {
+        id: 7,
+        name: 'Art Pieces',
+        image: '/shop/leather_carpet_1764846590965.png',
+        description: 'High-quality natural cowhide rugs with unique patterns.'
     }
 ];
 
