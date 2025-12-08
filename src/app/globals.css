@@ -854,6 +854,21 @@ body {
   color: var(--primary-color);
 }
 
+/* Top bar links (e.g., Luo Market) */
+.top-nav-link {
+  color: var(--text-white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.top-nav-link:hover {
+  color: var(--primary-color) !important;
+  opacity: 1 !important;
+}
+
 .mobile-nav {
   width: 100%;
   background-color: var(--bg-white);

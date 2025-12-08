@@ -71,7 +71,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               justifyContent: 'space-between',
               alignItems: 'center'
             }}>
-              {/* Left Side - Shop */}
+              {/* Shop */}
               <div style={{ display: 'flex', gap: '1.5rem' }}>
                 {topNavigation.filter(item => item.name === 'Shop').map((item) => {
                   const isActive = pathname?.startsWith(item.href)
@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         fontWeight: isActive ? '600' : '400',
                         opacity: isActive ? 1 : 0.9
                       }}
-                      className="hover:opacity-100 transition-opacity"
+                      className="top-nav-link hover:opacity-100 transition-opacity"
                     >
                       {item.icon && <item.icon size={16} />}
                       <span>{item.name}</span>
@@ -114,7 +114,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         fontWeight: isActive ? '600' : '400',
                         opacity: isActive ? 1 : 0.9
                       }}
-                      className="hover:opacity-100 transition-opacity"
+                      className="top-nav-link hover:opacity-100 transition-opacity"
                     >
                       {item.icon && <item.icon size={16} />}
                       <span>{item.name}</span>
