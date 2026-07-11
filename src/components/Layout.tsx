@@ -3,8 +3,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { Menu, X, ShoppingBag } from 'lucide-react'
+import { Menu, X, ShoppingBag, GitBranch, LogIn, LogOut, User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { useSession, signOut } from 'next-auth/react'
 
 type NavigationItem = {
   name: string
@@ -15,14 +16,16 @@ type NavigationItem = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { data: session } = useSession()
 
   const mainNavigation: NavigationItem[] = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
+    { name: 'Family Tree', href: '/family-tree' },
+    { name: 'People', href: '/people' },
     { name: 'Events', href: '/events' },
     { name: 'Gallery', href: '/Gallery' },
     { name: 'Blogs', href: '/BlogList' },
-    { name: 'Drama', href: '/Drama' },
   ]
 
   const topNavigation: NavigationItem[] = [
@@ -178,6 +181,38 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </nav>
 
+            {/* Auth buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="desktop-auth">
+              {session ? (
+                <>
+                  <Link href="/my-tree"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.875rem', borderRadius: '2rem', background: '#fef9f0', border: '1.5px solid #d97706', color: '#92400e', fontSize: '0.82rem', fontWeight: '700', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                    <GitBranch size={14} />
+                    My Tree
+                  </Link>
+                  <button onClick={() => signOut({ callbackUrl: '/' })}
+                    title={`Sign out (${session.user?.name})`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.875rem', borderRadius: '2rem', border: '1.5px solid #e5e7eb', background: 'white', color: '#6b7280', fontSize: '0.82rem', fontWeight: '600', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    <LogOut size={14} />
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.875rem', borderRadius: '2rem', border: '1.5px solid #e5e7eb', background: 'white', color: '#374151', fontSize: '0.82rem', fontWeight: '600', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                    <LogIn size={14} />
+                    Sign In
+                  </Link>
+                  <Link href="/register"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.875rem', borderRadius: '2rem', background: '#d97706', color: 'white', fontSize: '0.82rem', fontWeight: '700', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                    <User size={14} />
+                    Join Free
+                  </Link>
+                </>
+              )}
+            </div>
+
             {/* Hamburger menu button */}
             <button
               className="menu-toggle"
@@ -231,6 +266,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 )
               })}
+
+              {/* Auth actions (mobile) */}
+              <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', marginTop: '0.5rem', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {session ? (
+                  <>
+                    <Link href="/my-tree" onClick={() => setIsMenuOpen(false)} className="nav-link-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <GitBranch size={18} /> <span>My Tree</span>
+                    </Link>
+                    <button onClick={() => { setIsMenuOpen(false); signOut({ callbackUrl: '/' }) }} className="nav-link-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', font: 'inherit' }}>
+                      <LogOut size={18} /> <span>Sign Out</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login" onClick={() => setIsMenuOpen(false)} className="nav-link-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <LogIn size={18} /> <span>Sign In</span>
+                    </Link>
+                    <Link href="/register" onClick={() => setIsMenuOpen(false)} className="nav-link-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <User size={18} /> <span>Join Free</span>
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
           </nav>
         )}
@@ -248,7 +306,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="footer-section">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
                 <Image
-                  src="/lln.svg"
+                  src="/LLNLOGO.svg"
                   alt="Luo League of Nations Logo"
                   width={32}
                   height={32}

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import SessionProvider from "@/components/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Luo League of Nations",
+  metadataBase: new URL("https://www.luoleagueofnations.com"),
+  title: {
+    default: "Luo League of Nations",
+    template: "%s · Luo League of Nations",
+  },
   description: "Preserving and sharing the rich cultural heritage and history of the Luo people",
+  openGraph: {
+    title: "Luo League of Nations",
+    description: "Preserving and sharing the rich cultural heritage and history of the Luo people",
+    url: "https://www.luoleagueofnations.com",
+    siteName: "Luo League of Nations",
+    type: "website",
+  },
   icons: {
     icon: "/LLNLOGO.svg",
     shortcut: "/LLNLOGO.svg",
@@ -35,7 +47,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Layout>{children}</Layout>
+        <SessionProvider>
+          <Layout>{children}</Layout>
+        </SessionProvider>
       </body>
     </html>
   );

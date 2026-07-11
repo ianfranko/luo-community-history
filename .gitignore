@@ -32,6 +32,15 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but do commit the documented template (placeholders only)
+!.env.example
+
+# local SQLite dev database (app runs on MySQL — see DEPLOY.md)
+prisma/dev.db
+prisma/*.db-journal
+
+# large source-media transcripts (keep .txt/.json, not the raw audio)
+*.wav
 
 # vercel
 .vercel

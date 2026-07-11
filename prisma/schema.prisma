@@ -1,154 +1,124 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  // Namecheap Stellar runs CloudLinux 8 (OpenSSL 1.1.x). Include the CL9 (3.0.x)
+  // target too so the same client works if the account is migrated. Prisma picks
+  // the right engine at runtime; "postinstall": "prisma generate" builds it on the server.
+  binaryTargets = ["native", "rhel-openssl-1.1.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
+// ─── NextAuth required models ─────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  contributions Contribution[]
-  
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  addedMembers  FamilyMember[] @relation("AddedBy")
+  ownProfile    FamilyMember?  @relation("OwnProfile")
+
   @@map("users")
 }
 
-model Category {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  description String?
-  slug        String   @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  articles Article[]
-  
-  @@map("categories")
+// ─── Family Tree ──────────────────────────────────────────────────────────────
+
+model FamilyMember {
+  id         String   @id @default(cuid())
+  firstName  String
+  lastName   String?
+  gender     String   @default("unknown") // male | female | unknown
+  birthYear  Int?
+  deathYear  Int?
+  birthPlace String?
+  clan       String?
+  bio        String?  @db.Text
+  isLiving   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // who added this person
+  addedById  String
+  addedBy    User   @relation("AddedBy", fields: [addedById], references: [id])
+
+  // if this FamilyMember has their own user account
+  userId     String? @unique
+  user       User?   @relation("OwnProfile", fields: [userId], references: [id])
+
+  relationshipsFrom Relationship[] @relation("FromMember")
+  relationshipsTo   Relationship[] @relation("ToMember")
+
+  @@map("family_members")
 }
 
-model Article {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  content     String
-  excerpt     String?
-  featured    Boolean  @default(false)
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
-  
-  tags       Tag[]
-  images     Image[]
-  sources    Source[]
-  
-  @@map("articles")
-}
+model Relationship {
+  id           String   @id @default(cuid())
+  fromMemberId String
+  toMemberId   String
+  // parent_of | child_of | spouse_of | sibling_of | grandparent_of | grandchild_of | related_to
+  type         String
+  createdAt    DateTime @default(now())
 
-model Tag {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  slug      String   @unique
-  createdAt DateTime @default(now())
-  
-  articles Article[]
-  
-  @@map("tags")
-}
+  addedById    String
 
-model Image {
-  id        String   @id @default(cuid())
-  url       String
-  alt       String?
-  caption   String?
-  createdAt DateTime @default(now())
-  
-  articleId String
-  article   Article @relation(fields: [articleId], references: [id])
-  
-  @@map("images")
-}
+  fromMember   FamilyMember @relation("FromMember", fields: [fromMemberId], references: [id], onDelete: Cascade)
+  toMember     FamilyMember @relation("ToMember", fields: [toMemberId], references: [id], onDelete: Cascade)
 
-model Source {
-  id        String   @id @default(cuid())
-  title     String
-  url       String?
-  author    String?
-  publisher String?
-  year      Int?
-  type      String   // book, article, website, oral_history, etc.
-  createdAt DateTime @default(now())
-  
-  articleId String
-  article   Article @relation(fields: [articleId], references: [id])
-  
-  @@map("sources")
-}
-
-model Contribution {
-  id          String   @id @default(cuid())
-  title       String
-  content     String
-  type        String   // story, photo, document, correction, etc.
-  status      String   @default("pending") // pending, approved, rejected
-  notes       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-  
-  @@map("contributions")
-}
-
-model Event {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  date        DateTime
-  location    String?
-  type        String   // cultural, historical, celebration, etc.
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  @@map("events")
-}
-
-model Person {
-  id          String   @id @default(cuid())
-  name        String
-  title       String?  // Chief, Elder, etc.
-  biography   String?
-  birthYear   Int?
-  deathYear   Int?
-  village     String?
-  clan        String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  @@map("people")
-}
-
-model Place {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  type        String   // village, town, landmark, etc.
-  coordinates String?  // lat,lng
-  county      String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  @@map("places")
+  @@map("relationships")
 }
