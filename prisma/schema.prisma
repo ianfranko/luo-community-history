@@ -1,14 +1,17 @@
 generator client {
   provider      = "prisma-client-js"
-  // Namecheap Stellar runs CloudLinux 8 (OpenSSL 1.1.x). Include the CL9 (3.0.x)
-  // target too so the same client works if the account is migrated. Prisma picks
-  // the right engine at runtime; "postinstall": "prisma generate" builds it on the server.
-  binaryTargets = ["native", "rhel-openssl-1.1.x", "rhel-openssl-3.0.x"]
+  // "native" for local dev; the rhel targets cover Vercel's serverless runtime
+  // (AWS Lambda — OpenSSL 1.0.x on older Node, 3.0.x on Node 20+). Built by the
+  // "postinstall": "prisma generate" step during each Vercel deploy.
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // Pooled connection (Neon PgBouncer) — used at runtime by the app.
+  url       = env("DATABASE_URL")
+  // Direct connection — used by `prisma migrate` (migrations need a non-pooled link).
+  directUrl = env("DIRECT_URL")
 }
 
 // ─── NextAuth required models ─────────────────────────────────────────────────
